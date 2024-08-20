@@ -27,6 +27,7 @@ import program23 from '../images/program23.webp';
 import program24 from '../images/program24.webp';
 import program25 from '../images/program25.webp';
 import program26 from '../images/program26.webp';
+import Footer from '../components/Footer';
 
 const programsData = [
   { id: 1, src: program1, name: 'WhatsApp Messenger', rating: 4.3 },
@@ -60,12 +61,10 @@ const programsData = [
 const Programs = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Функция для обработки изменения ввода в поле поиска
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value.toLowerCase());
   };
 
-  // Фильтрация данных на основе поискового запроса
   const filteredPrograms = programsData.filter(program =>
     program.name.toLowerCase().includes(searchQuery)
   );
@@ -77,19 +76,20 @@ const Programs = () => {
         <div className="programs-title py-8 text-center animate__animated animate__fadeIn">
           <h1 className='text-2xl sm:text-3xl md:text-4xl font-medium'>На основе недавних действий</h1>
         </div>
-        <div className="relative">
+        <div className="relative items-center justify-center flex">
           <input
             type="search"
             placeholder="Search..."
-            className="border p-2 rounded-lg outline-none w-full md:w-64"
+            className="border border-black shadow-lg px-6 text-2xl py-2 rounded-lg outline-none w-96 md:w-64"
             value={searchQuery}
             onChange={handleSearchChange}
           />
         </div>
-        <div className="programs-cards grid items-center ml-[25%] xl:ml-0 md:ml-0 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
+     <div className="centering flex items-center justify-center">
+     <div className="programs-cards grid items-center xl:ml-0 md:ml-0 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
           {filteredPrograms.length > 0 ? (
             filteredPrograms.map(program => (
-              <div key={program.id} className="program-card p-4 w-fit flex flex-col items-start gap-4 bg-white rounded-xl transition-all ease-in-out duration-300 hover:bg-gray-100 hover:scale-105 hover:shadow-lg animate__animated animate__fadeIn">
+              <div key={program.id} className="program-card shadow-lg p-4 w-fit flex flex-col items-start gap-4 bg-white rounded-xl transition-all ease-in-out duration-300 hover:bg-gray-100 hover:scale-105 hover:shadow-lg animate__animated animate__fadeIn">
                 <img src={program.src} className='rounded-lg overflow-hidden' alt={program.name} />
                 <h1 className='text-lg sm:text-xl md:text-2xl'>{program.name}</h1>
                 <div className="wrapper flex items-center gap-2 animate__animated animate__fadeIn animate__delay-1s">
@@ -102,7 +102,9 @@ const Programs = () => {
             <p className="text-center text-gray-500">No results found</p>
           )}
         </div>
+     </div>
       </div>
+      <Footer/>
     </>
   );
 }

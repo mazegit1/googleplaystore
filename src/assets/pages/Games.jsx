@@ -7,6 +7,7 @@ import gamefirstlogo from '../images/gamefirstlogo.webp';
 import gamesecondlogo from '../images/gamesecondlogo.webp';
 import gamethirdlogo from '../images/gamethirdlogo.webp';
 import 'animate.css';
+import Footer from '../components/Footer';
 
 const Games = () => {
   return (
@@ -30,7 +31,7 @@ const Games = () => {
             { img: gamesecond, logo: gamesecondlogo, title: 'Rise of Kingdoms: Lost Crusade' },
             { img: gamethird, logo: gamethirdlogo, title: 'Rise of Kingdoms: Lost Crusade' },
           ].map((game, index) => (
-            <div key={index} className="game-card transition-all ease-in-out duration-200 rounded-xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg animate__animated animate__fadeIn">
+            <div key={index} className="game-card shadow-lg transition-all ease-in-out duration-200 rounded-xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg animate__animated animate__fadeIn">
               <img src={game.img} alt={`Game ${index + 1}`} className="w-full h-auto" />
               <div className="wrapper p-4">
                 <div className="wrapper-left flex items-center gap-4">
@@ -45,6 +46,7 @@ const Games = () => {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

@@ -38,7 +38,7 @@ const Navbar = () => {
     <div className="header px-4 py-2 flex items-center justify-between border-b-2 border-gray-300 shadow-md fixed w-full bg-white z-50">
       <div className="header-left flex items-center gap-4">
         <a href='/' className="wrapper">
-          <img src={googleplay} className="w-24 md:w-36" alt="Google Play" />
+          <img src={googleplay} className="w-36 md:w-44" alt="Google Play" />
         </a>
         <div className="hidden md:flex items-center gap-4">
           <Link to="/" className='text-lg md:text-2xl text-gray-600 underline text-[#4b9279] transition-all ease-in-out duration-200'>Игры</Link>
