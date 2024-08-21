@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import StarIcon from '@mui/icons-material/Star';
 import program1 from '../images/program1.webp';
@@ -72,41 +73,70 @@ const Programs = () => {
   return (
     <>
       <Navbar />
-      <div className="programs py-20 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32">
-        <div className="programs-title py-8 text-center animate__animated animate__fadeIn">
-          <h1 className='text-2xl sm:text-3xl md:text-4xl font-medium'>На основе недавних действий</h1>
-        </div>
+      <motion.div
+        className="programs py-20 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <motion.div
+          className="programs-title py-8 text-center"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium">
+            На основе недавних действий
+          </h1>
+        </motion.div>
         <div className="relative items-center justify-center flex">
-          <input
+          <motion.input
             type="search"
             placeholder="Search..."
             className="border border-black shadow-lg px-6 text-2xl py-2 rounded-lg outline-none w-96 md:w-64"
             value={searchQuery}
             onChange={handleSearchChange}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
           />
         </div>
-     <div className="centering flex items-center justify-center">
-     <div className="programs-cards grid items-center xl:ml-0 md:ml-0 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
-          {filteredPrograms.length > 0 ? (
-            filteredPrograms.map(program => (
-              <div key={program.id} className="program-card shadow-lg p-4 w-fit flex flex-col items-start gap-4 bg-white rounded-xl transition-all ease-in-out duration-300 hover:bg-gray-100 hover:scale-105 hover:shadow-lg animate__animated animate__fadeIn">
-                <img src={program.src} className='rounded-lg overflow-hidden' alt={program.name} />
-                <h1 className='text-lg sm:text-xl md:text-2xl'>{program.name}</h1>
-                <div className="wrapper flex items-center gap-2 animate__animated animate__fadeIn animate__delay-1s">
-                  <p className='text-base sm:text-lg md:text-xl'>{program.rating}</p>
-                  <StarIcon />
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500">No results found</p>
-          )}
-        </div>
-     </div>
-      </div>
-      <Footer/>
+
+        <motion.div
+          className="centering flex items-center justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          <div className="programs-cards grid items-center xl:ml-0 md:ml-0 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
+            {filteredPrograms.length > 0 ? (
+              filteredPrograms.map(program => (
+                <motion.div
+                  key={program.id}
+                  className="program-card shadow-lg p-4 w-fit flex flex-col items-start gap-4 bg-white rounded-xl transition-all ease-in-out duration-300 hover:bg-gray-100 hover:scale-105 hover:shadow-lg"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: program.id * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <img src={program.src} className="rounded-lg overflow-hidden" alt={program.name} />
+                  <h1 className="text-lg sm:text-xl md:text-2xl">{program.name}</h1>
+                  <div className="wrapper flex items-center gap-2">
+                    <p className="text-base sm:text-lg md:text-xl">{program.rating}</p>
+                    <StarIcon />
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <p className="text-center text-gray-500">No results found</p>
+            )}
+          </div>
+        </motion.div>
+      </motion.div>
+      <Footer />
     </>
   );
-}
+};
 
 export default Programs;
